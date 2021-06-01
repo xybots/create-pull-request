@@ -1,0 +1,36 @@
+{
+  "name": "create-pull-request",
+  "version": "2.0.0",
+  "description": "Creates a pull request for changes to your repository in the actions workspace",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "lint": "eslint src/index.js",
+    "test": "eslint src/index.js && jest",
+    "build": "ncc build src/index.js -o dist",
+    "vendor-deps": "pip download -r src/cpr/requirements.txt --no-binary=:all: -d dist/vendor",
+    "package": "npm run build && npm run vendor-deps"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peter-evans/create-pull-request.git"
+  },
+  "keywords": [],
+  "author": "Peter Evans",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/peter-evans/create-pull-request/issues"
+  },
+  "homepage": "https://github.com/peter-evans/create-pull-request",
+  "dependencies": {
+    "@actions/core": "^1.1.1",
+    "@actions/exec": "^1.0.1",
+    "@actions/tool-cache": "^1.1.2",
+    "is-docker": "^2.0.0"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "0.22.0",
+    "eslint": "6.8.0",
+    "jest": "25.2.4"
+  }
+}
